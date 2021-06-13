@@ -1,0 +1,10 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'core/style.css' %}">
+
+<form method="post">{% csrf_token %}
+    <div>Your user name is your full name with a full stop in the middle e.g. Michael.Jennings</div>
+    <div>The password is the code you received with your invitation</div>
+    {{ form.as_p }}
+    <input type="submit" value="Login">
+</form>

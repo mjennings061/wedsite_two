@@ -1,0 +1,13 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'core/style.css' %}">
+
+{% if guests %}
+    <ul>
+    {% for guest in guests %}
+        <li>{{ guest.user }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No guests are available.</p>
+{% endif %}
