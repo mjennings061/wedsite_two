@@ -3,6 +3,7 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import FormView
 from .forms import GuestForm, AddressForm
 from .models import Guest, Address
+from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -11,18 +12,22 @@ class IndexView(ListView):
     """Welcome page with Countdown?"""
     template_name = 'core/index.html'
     context_object_name = 'guests'
-    queryset = Guest.objects.order_by('user')[:5]
+    model = User
+    # queryset = Guest.objects.order_by('user')[:5]
 
 
 class RsvpLoginView(LoginView):
+    """Log in using the Django LoginView class"""
     template_name = 'core/rsvp_login.html'
 
 
 class RsvpLogoutView(LogoutView):
-    template_name = 'core/rsvp_login.html'
+    """Log out the user"""
+    pass
 
 
 class RsvpView(LoginRequiredMixin, FormView):
+    """Guest RSVP registration page using two ModelForms"""
     template_name = 'core/rsvp.html'
     form_class = GuestForm
     second_form_class = AddressForm
@@ -37,10 +42,7 @@ class RsvpView(LoginRequiredMixin, FormView):
             context['form_address'] = self.second_form_class()
         return context
 
-# class RsvpPreviewView():
-#     template_name =
-#
-#
+
 # class IteneraryView(generic.ListView)
 #     template_name =
 #
