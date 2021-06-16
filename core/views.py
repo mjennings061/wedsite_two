@@ -7,7 +7,7 @@ from .models import Guest, Address
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.http.response import HttpResponseForbidden
+from django.http.response import HttpResponseNotAllowed
 
 
 class IndexView(ListView):
@@ -33,7 +33,7 @@ class RsvpView(LoginRequiredMixin, FormView):
     form_class = GuestForm
     second_form_class = AddressForm
     login_url = reverse_lazy('core:rsvp_login')
-    success_url = reverse_lazy('core:logout')
+    success_url = reverse_lazy('core:rsvp_logout')
 
     def get_context_data(self, **kwargs):
         context = super(RsvpView, self).get_context_data(**kwargs)
@@ -42,6 +42,26 @@ class RsvpView(LoginRequiredMixin, FormView):
         if 'form2' not in context:
             context['form_address'] = self.second_form_class()
         return context
+
+    def form_valid(self, guest_form):
+        # save most of the guest form, minus the address and user
+        guest = guest_form.save(commit=False)
+        guest.user = self.request.user  # add the user to the model-to-be-saved
+        # TODO: move the address checking code to models.Address. Return only the model object
+        # populate an empty GuestForm with the posted data
+        address_form = self.second_form_class(self.request.POST)
+        if address_form.is_valid():
+            # check if something has been entered in the address before saving it
+            if len(address_form.cleaned_data['FirstLine']) > 1:
+                # check there are no addresses matching that already
+                if not Address.objects.filter(FirstLine=address_form.cleaned_data['FirstLine']).exists():
+                    address = address_form.save()     # save to the database
+                else:
+                    # get the address from the database if it already exists
+                    address = Address.objects.get(FirstLine=address_form.cleaned_data['FirstLine'])
+                guest.address = address     # append to the model to be saved
+        guest.save()
+        return super().form_valid(guest_form)
 
 
 class ItineraryView(View):
