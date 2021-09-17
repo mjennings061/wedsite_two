@@ -1,11 +1,11 @@
-{% load static %}
+{% extends "core/base.html" %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'core/style.css' %}">
-
-<form method="post">{% csrf_token %}
-    <div>Enter your contact details and availability</div>
-    {{ form.as_p }}
-    <div>Enter your address details:</div>
-    {{ form_address.as_p }}
-    <input type="submit" value="Submit RSVP">
-</form>
+{% block content %}
+    <form method="post">{% csrf_token %}
+        <div>Enter your contact details and availability</div>
+        {{ form.as_p }}
+        <div>Enter your address details:</div>
+        {{ form_address.as_p }}
+        <input type="submit" value="Submit RSVP">
+    </form>
+{% endblock %}

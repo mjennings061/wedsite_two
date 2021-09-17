@@ -1,32 +1,21 @@
-{% load static %}
+{% extends "core/base.html" %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'core/style.css' %}">
-
-<a href="{% url 'core:index' %}">Index</a>
-{% if user.is_authenticated %}
-    <a href="{% url 'core:rsvp_logout' %}">Logout</a>
-    {% if user.is_staff %}
-        <a href="{% url 'core:guest_summary' %}">Guest List</a>
-    {% endif %}
-{% else %}
-    <a href="{% url 'core:rsvp_login' %}">RSVP</a>
-{% endif %}
-<a href="{% url 'core:itinerary' %}">Itinerary</a>
-<a href="{% url 'core:getting_there' %}">Getting There</a>
-<a href="{% url 'core:about_us' %}">About Us</a>
-<a href="{% url 'core:wedding_party' %}">Wedding Party</a>
-<a href="{% url 'core:honeymoon' %}">Honeymoon</a>
-<a href="{% url 'core:gifts' %}">Gifts</a>
-<a href="{% url 'core:photos' %}">Photos</a>
-
-<a href="/admin/">Admin</a>
-
-{% if object_list %}
-    <ul>
-    {% for guest in object_list %}
-        <li>{{ guest.username }}</li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No guests are available.</p>
-{% endif %}
+{% block content %}
+    {% load static %}
+    {# TODO: add a vertical space between background image and navbar #}
+    <div class="col s12 center-align">
+        <img class="responsive-img" src="{% static 'core/images/background.bmp' %}" alt="Background">
+    </div>
+    {# Show a list from a ListView #}
+    <div class="col s12">
+        {% if object_list %}
+            <ul>
+            {% for guest in object_list %}
+                <li>{{ guest.username }}</li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No guests are available.</p>
+        {% endif %}
+    </div>
+{% endblock %}

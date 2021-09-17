@@ -1,6 +1,6 @@
-li a {
-    color: green;
-}
-body {
-    background: white url("images/woodburn.jpeg") no-repeat;
-}
+.nav-wrapper {
+    background-color: #134162 !important;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }

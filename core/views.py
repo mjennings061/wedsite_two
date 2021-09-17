@@ -44,6 +44,7 @@ class RsvpView(LoginRequiredMixin, FormView):
         return context
 
     def form_valid(self, guest_form):
+        # TODO: check for a valid phone number before saving
         # save most of the guest form, minus the address and user
         guest = guest_form.save(commit=False)
         guest.user = self.request.user  # add the user to the model-to-be-saved
@@ -61,6 +62,7 @@ class RsvpView(LoginRequiredMixin, FormView):
                     address = Address.objects.get(FirstLine=address_form.cleaned_data['FirstLine'])
                 guest.address = address     # append to the model to be saved
         guest.save()
+        # TODO: logout user after submitting the form
         return super().form_valid(guest_form)
 
 

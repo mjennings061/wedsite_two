@@ -1,0 +1,53 @@
+<nav>
+    <div class="nav-wrapper">
+        <div class="container">
+            {# Brand-logo here #}
+            <a href="{% url 'core:index' %}" class="brand-logo">Katie &amp; Michael</a>
+            <a href="#" class="sidenav-trigger" data-target="slide_out"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'core:rsvp_logout' %}">Logout</a></li>
+                    {% if user.is_staff %}
+                        <li><a href="{% url 'core:guest_summary' %}">Guest List</a></li>
+                    {% endif %}
+                {% else %}
+                    <li><a href="{% url 'core:rsvp_login' %}">RSVP</a></li>
+                {% endif %}
+                <li><a href="{% url 'core:itinerary' %}">Itinerary</a></li>
+                <li><a href="{% url 'core:getting_there' %}">Getting There</a></li>
+                <li><a href="{% url 'core:about_us' %}">About Us</a></li>
+                <li><a href="{% url 'core:wedding_party' %}">Wedding Party</a></li>
+                <li><a href="{% url 'core:honeymoon' %}">Honeymoon</a></li>
+                <li><a href="{% url 'core:gifts' %}">Gifts</a></li>
+                <li><a href="{% url 'core:photos' %}">Photos</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+{# Side nav bar for smaller screens #}
+<ul class="sidenav" id="slide_out">
+    {% if user.is_authenticated %}
+        <li><a href="{% url 'core:rsvp_logout' %}">Logout</a></li>
+        {% if user.is_staff %}
+            <li><a href="{% url 'core:guest_summary' %}">Guest List</a></li>
+        {% endif %}
+    {% else %}
+        <li><a href="{% url 'core:rsvp_login' %}">RSVP</a></li>
+    {% endif %}
+    <li><a href="{% url 'core:itinerary' %}">Itinerary</a></li>
+    <li><a href="{% url 'core:getting_there' %}">Getting There</a></li>
+    <li><a href="{% url 'core:about_us' %}">About Us</a></li>
+    <li><a href="{% url 'core:wedding_party' %}">Wedding Party</a></li>
+    <li><a href="{% url 'core:honeymoon' %}">Honeymoon</a></li>
+    <li><a href="{% url 'core:gifts' %}">Gifts</a></li>
+    <li><a href="{% url 'core:photos' %}">Photos</a></li>
+</ul>
+
+{# Sidebar popout javascript#}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var myNav = document.querySelectorAll('.sidenav');
+    M.Sidenav.init(myNav, {});
+});
+</script>

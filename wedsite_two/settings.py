@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'wedsite_two.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'wedsite_two',
-        'USER': 'postgres',
-        'PASSWORD': 'password1234',
+        'NAME': 'wedsite_db',
+        'USER': 'mj',
+        'PASSWORD': 'grobtutor',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
