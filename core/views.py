@@ -75,22 +75,30 @@ class AboutUsView(View):
 
 
 class WeddingPartyView(View):
+    # TODO: Add set-list
+    # TODO:
     pass
 
 
 class GettingThereView(View):
+    # TODO: Add venue details
     pass
 
 
 class HoneymoonPlansView(View):
+    # TODO: Add honeymoon plans with an image of where we are going
+    # TODO: Add link to GiftsInfoView to donate
     pass
 
 
 class GiftsInfoView(View):
+    # TODO: Add a link to PayPal
     pass
 
 
 class PhotosView(FormView):
+    # TODO: Add hashtag viewer for instagram and twitter:
+    # https://developers.facebook.com/docs/instagram-api/guides/hashtag-search
     pass
 
 

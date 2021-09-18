@@ -21,6 +21,7 @@ class Guest(models.Model):
         choices=CHOICES,
         help_text="Please select your availability on the day of the wedding"
     )
+    song = models.TextField(blank=True, help_text="Suggest a song to be played at the evening party")
 
     def __str__(self):
         return f'{self.user}'
