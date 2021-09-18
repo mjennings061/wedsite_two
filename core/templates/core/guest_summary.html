@@ -1,22 +1,76 @@
 {% extends "core/base.html" %}
 {# TODO: Create three columns of a table. those attending, attending only ceremony, attending only dinner #}
 {% block content %}
-    {% if object_list %}
-        <ul>
-        {% for user in object_list %}
-            <li>
-                {% if user.first_name %}
-                    {{ user.first_name }} {{ user.last_name }}:
-                    {% for guest in user.guest_set.all %}
-                         {{ guest.get_RSVP_display }}
-                    {% endfor %}
-                {% else %}
-                    {{ user.username }}:
-                {% endif %}
-            </li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>No guests are available.</p>
-    {% endif %}
+    <div class="row">
+        <div class="col l3 s6">
+            <table class="striped">
+                <thead>
+                <tr>
+                    <th>Going</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in going %}
+                    <tr><td>{{ user }}</td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col l3 s6">
+            <table class="striped">
+                <thead>
+                <tr>
+                    <th>Ceremony Only</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in ceremony %}
+                    <tr><td>{{ user }}</td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col l3 s6">
+            <table class="striped">
+                <thead>
+                <tr>
+                    <th>Not Going</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in not_going %}
+                    <tr><td>{{ user }}</td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col l3 s6">
+            <table class="striped">
+                <thead>
+                <tr>
+                    <th>No Response</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in no_response %}
+                    <tr><td>{{ user }}</td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{#    {% if object_list %}#}
+{#        {% for user in object_list %}#}
+{#            {% if user.first_name %}#}
+{#                {{ user.first_name }} {{ user.last_name }}:#}
+{#                {% for guest in user.guest_set.all %}#}
+{#                    {{ guest.get_RSVP_display }}#}
+{#                {% endfor %}#}
+{#            {% else %}#}
+{#                {{ user.username }}:#}
+{#            {% endif %}#}
+{#        {% endfor %}#}
+{#    {% else %}#}
+{#        <p>No guests are available.</p>#}
+{#    {% endif %}#}
 {% endblock %}

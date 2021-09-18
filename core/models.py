@@ -38,7 +38,10 @@ class Guest(models.Model):
     )
 
     def __str__(self):
-        return f'{self.user}'
+        if self.user.first_name is not '':
+            return f'{self.user.first_name} {self.user.last_name}'
+        else:
+            return f'{self.user}'
 
 
 class Address(models.Model):

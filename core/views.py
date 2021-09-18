@@ -1,5 +1,5 @@
 from django.urls.base import reverse_lazy
-from django.views.generic import View
+from django.views.generic import View, TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.edit import FormView
 from .forms import GuestForm, AddressForm
@@ -106,10 +106,37 @@ class ContactDetailsView(View):
     pass
 
 
-class GuestSummaryView(LoginRequiredMixin, UserPassesTestMixin, ListView):
-    model = User
+class GuestSummaryView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
     template_name = 'core/guest_summary.html'
-    context_object_name = 'users'
 
     def test_func(self):
         return self.request.user.is_superuser
+
+    def get_context_data(self, **kwargs):
+        # Get a list of all users
+        users = User.objects.all()
+        # Filter users by their rsvp_choice in guest
+        guests_going = self.names_from_queryset(users.filter(guest__RSVP=0))
+        guests_ceremony = self.names_from_queryset(users.filter(guest__RSVP=1))
+        guests_not_going = self.names_from_queryset(users.filter(guest__RSVP=2))
+        # Get users with no guest profile attached
+        guests_no_response = self.names_from_queryset(users.filter(guest=None))
+
+        # Return all four context lists
+        context = {
+            'going': guests_going,
+            'ceremony': guests_ceremony,
+            'not_going': guests_not_going,
+            'no_response': guests_no_response,
+        }
+        return context
+
+    def names_from_queryset(self, queryset):
+        """Get a list of names from a queryset of Users"""
+        names = []
+        for user in queryset:
+            if user.first_name is not '':
+                names.append(f"{user.first_name} {user.last_name}")
+            else:
+                names.append(f"{user.username}")
+        return names
