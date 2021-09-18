@@ -1,0 +1,23 @@
+input[type="text"] {
+  color: #FFF;
+}
+
+input[type="url"] {
+  color: #FFF;
+}
+
+input[type="email"] {
+  color: #FFF;
+}
+
+input[type="password"] {
+  color: #FFF;
+}
+
+input[type="number"] {
+  color: #FFF;
+}
+
+textarea {
+  color: #FFF;
+}
