@@ -8,16 +8,27 @@
             <img class="responsive-img" src="{% static 'core/images/background.bmp' %}" alt="Background">
         </div>
     </div>
-    {# Show a list from a ListView #}
-    <div class="col s12">
-        {% if object_list %}
-            <ul>
-            {% for guest in object_list %}
-                <li>{{ guest.username }}</li>
-            {% endfor %}
-            </ul>
-        {% else %}
-            <p>No guests are available.</p>
-        {% endif %}
+    {# Link to RSVP #}
+    <div class="row">
+        <div class="col l6 offset-l3 s12">
+            <p class="center-align">
+                <a class="waves-effect waves-light btn-large indigo darken-4" href="{% url 'core:rsvp_login' %}">
+                    <i class="material-icons left">beenhere</i>
+                    RSVP Here
+                </a>
+            </p>
+        </div>
+    </div>
+    {# Countdown timer #}
+    <div class="row">
+        <div class="col l6 offset-l3 s12">
+            <iframe
+                src="https://free.timeanddate.com/countdown/i7zkdha7/n919/cf100/cm0/cu4/ct0/cs0/ca0/co1/cr0/ss0/cacfff/cpcfff/pct/tcfff/fs250/szw576/szh243/tatTime%20until%20the%20big%20day/tacfff/tptTime%20since%20the%20big%20day/tpcfff/iso2022-02-10T13:30:00"
+                allowtransparency="true"
+                frameborder="0"
+                width="576"
+                height="243">
+            </iframe>
+        </div>
     </div>
 {% endblock %}

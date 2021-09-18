@@ -13,14 +13,12 @@ urlpatterns = [
     path('wedding_party/', WeddingPartyView.as_view(), name='wedding_party'),
     # our story
     path('about_us/', AboutUsView.as_view(), name='about_us'),
-    # itinerary/summary
-    path('itinerary/', ItineraryView.as_view(), name='itinerary'),
+    # itinerary/getting there
+    path('on_the_day/', OnTheDayView.as_view(), name='on_the_day'),
     # gifts - paypal button - honeymoon plans
     path('gifts/', GiftsInfoView.as_view(), name='gifts'),
     # photo gallery
     path('photos/', PhotosView.as_view(), name='photos'),
-    # getting there
-    path('getting_there/', GettingThereView.as_view(), name='getting_there'),
     # contact details
     path('contact_details/', ContactDetailsView.as_view(), name='contact_details'),
     # honeymoon plans

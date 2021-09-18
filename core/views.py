@@ -10,11 +10,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http.response import HttpResponseNotAllowed
 
 
-class IndexView(ListView):
+class IndexView(TemplateView):
     """Welcome page with Countdown?"""
     template_name = 'core/index.html'
-    model = User
-    # queryset = Guest.objects.order_by('user')[:5]
 
 
 class RsvpLoginView(LoginView):
@@ -65,21 +63,19 @@ class RsvpView(LoginRequiredMixin, FormView):
         return super().form_valid(guest_form)
 
 
-class ItineraryView(View):
+class OnTheDayView(View):
+    # TODO: Add timeline
+    # TODO: Add venue details
+    # TODO: Add menu
     pass
 
 
-class AboutUsView(View):
-    pass
+class AboutUsView(TemplateView):
+    template_name = 'core/about_us.html'
 
 
 class WeddingPartyView(View):
     # TODO: Add description of bridal party
-    pass
-
-
-class GettingThereView(View):
-    # TODO: Add venue details
     pass
 
 
