@@ -53,13 +53,13 @@ class RsvpView(LoginRequiredMixin, FormView):
         address_form = self.second_form_class(self.request.POST)
         if address_form.is_valid():
             # check if something has been entered in the address before saving it
-            if len(address_form.cleaned_data['FirstLine']) > 1:
+            if len(address_form.cleaned_data['first_line']) > 1:
                 # check there are no addresses matching that already
-                if not Address.objects.filter(FirstLine=address_form.cleaned_data['FirstLine']).exists():
+                if not Address.objects.filter(first_line=address_form.cleaned_data['first_line']).exists():
                     address = address_form.save()     # save to the database
                 else:
                     # get the address from the database if it already exists
-                    address = Address.objects.get(FirstLine=address_form.cleaned_data['FirstLine'])
+                    address = Address.objects.get(first_line=address_form.cleaned_data['first_line'])
                 guest.address = address     # append to the model to be saved
         guest.save()
         # TODO: logout user after submitting the form

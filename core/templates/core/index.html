@@ -2,9 +2,11 @@
 
 {% block content %}
     {% load static %}
-    {# TODO: add a vertical space between background image and navbar #}
-    <div class="col s12 center-align">
-        <img class="responsive-img" src="{% static 'core/images/background.bmp' %}" alt="Background">
+    <div class="row">
+        <p></p>
+        <div class="col s12 center-align">
+            <img class="responsive-img" src="{% static 'core/images/background.bmp' %}" alt="Background">
+        </div>
     </div>
     {# Show a list from a ListView #}
     <div class="col s12">
