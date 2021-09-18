@@ -1,12 +1,13 @@
 {% extends "core/base.html" %}
-{# TODO: Create three columns of a table. those attending, attending only ceremony, attending only dinner #}
+
 {% block content %}
     <div class="row">
+        <h3>Attendance Summary</h3>
         <div class="col l3 s6">
             <table class="striped">
                 <thead>
                 <tr>
-                    <th>Going</th>
+                    <th>Going ({{ going | length }})</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -20,7 +21,7 @@
             <table class="striped">
                 <thead>
                 <tr>
-                    <th>Ceremony Only</th>
+                    <th>Ceremony Only ({{ ceremony | length}})</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -34,7 +35,7 @@
             <table class="striped">
                 <thead>
                 <tr>
-                    <th>Not Going</th>
+                    <th>Not Going ({{ not_going | length }})</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -48,7 +49,7 @@
             <table class="striped">
                 <thead>
                 <tr>
-                    <th>No Response</th>
+                    <th>No Response ({{ no_response | length }})</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -59,18 +60,8 @@
             </table>
         </div>
     </div>
-{#    {% if object_list %}#}
-{#        {% for user in object_list %}#}
-{#            {% if user.first_name %}#}
-{#                {{ user.first_name }} {{ user.last_name }}:#}
-{#                {% for guest in user.guest_set.all %}#}
-{#                    {{ guest.get_RSVP_display }}#}
-{#                {% endfor %}#}
-{#            {% else %}#}
-{#                {{ user.username }}:#}
-{#            {% endif %}#}
-{#        {% endfor %}#}
-{#    {% else %}#}
-{#        <p>No guests are available.</p>#}
-{#    {% endif %}#}
+    <div class="row">
+        <h3>Dietary Requirements</h3>
+        {# TODO: Add a table of dietary requirements #}
+    </div>
 {% endblock %}

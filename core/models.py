@@ -16,9 +16,13 @@ class Guest(models.Model):
     dietary = models.TextField(
         blank=True,
         verbose_name="Dietary requirements",
-        help_text="Please enter your dietary requirements or allergies",
+        help_text="Please enter your dietary requirements or allergies. Enter 'None' if not",
     )
-    phone = models.CharField(max_length=15, verbose_name="Mobile phone number")
+    phone = models.CharField(
+        max_length=15,
+        verbose_name="Mobile phone number",
+        help_text="",
+    )
     email = models.EmailField(blank=True, verbose_name="Email address")
     address = models.ForeignKey(
         'Address',

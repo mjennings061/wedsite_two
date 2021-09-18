@@ -62,7 +62,6 @@ class RsvpView(LoginRequiredMixin, FormView):
                     address = Address.objects.get(first_line=address_form.cleaned_data['first_line'])
                 guest.address = address     # append to the model to be saved
         guest.save()
-        # TODO: logout user after submitting the form
         return super().form_valid(guest_form)
 
 
@@ -75,8 +74,7 @@ class AboutUsView(View):
 
 
 class WeddingPartyView(View):
-    # TODO: Add set-list
-    # TODO:
+    # TODO: Add description of bridal party
     pass
 
 
@@ -121,6 +119,9 @@ class GuestSummaryView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
         guests_not_going = self.names_from_queryset(users.filter(guest__RSVP=2))
         # Get users with no guest profile attached
         guests_no_response = self.names_from_queryset(users.filter(guest=None))
+
+        # TODO: get dietary requirements. Filter those that say None or blank
+
 
         # Return all four context lists
         context = {
