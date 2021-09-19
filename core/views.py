@@ -1,6 +1,5 @@
 from django.urls.base import reverse_lazy
 from django.views.generic import View, TemplateView
-from django.views.generic.list import ListView
 from django.views.generic.edit import FormView
 from .forms import GuestForm, AddressForm
 from .models import Guest, Address
@@ -8,6 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 class IndexView(TemplateView):
@@ -15,14 +15,19 @@ class IndexView(TemplateView):
     template_name = 'core/index.html'
 
 
-class RsvpLoginView(LoginView):
+class RsvpLoginView(SuccessMessageMixin, LoginView):
     """Log in using the Django LoginView class"""
     template_name = 'core/rsvp_login.html'
+    success_message = "Logged in successfully"
 
 
 class RsvpLogoutView(LogoutView):
     """Log out the user"""
-    pass
+    def dispatch(self, request, *args, **kwargs):
+        # Append a message when logging out
+        response = super().dispatch(request, *args, **kwargs)
+        messages.add_message(request, messages.SUCCESS, "Successfully logged out")
+        return response
 
 
 class RsvpView(LoginRequiredMixin, FormView):
