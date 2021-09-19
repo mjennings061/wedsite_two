@@ -30,13 +30,14 @@ class RsvpLogoutView(LogoutView):
         return response
 
 
-class RsvpView(LoginRequiredMixin, FormView):
+class RsvpView(LoginRequiredMixin, SuccessMessageMixin, FormView):
     """Guest RSVP registration page using two ModelForms"""
     template_name = 'core/rsvp.html'
     form_class = GuestForm
     second_form_class = AddressForm
     login_url = reverse_lazy('core:rsvp_login')
     success_url = reverse_lazy('core:rsvp_logout')
+    success_message = "RSVP submitted successfully"
 
     def get_context_data(self, **kwargs):
         context = super(RsvpView, self).get_context_data(**kwargs)
@@ -46,11 +47,26 @@ class RsvpView(LoginRequiredMixin, FormView):
             context['form_address'] = self.second_form_class()
         return context
 
+    def form_invalid(self, form):
+        """Show a warning message when the form is not valid"""
+        messages.add_message(
+            self.request,
+            messages.WARNING,
+            "Please check the form and resubmit - maybe check the phone number has '+44...'")
+        return super().form_invalid(form)
+
     def form_valid(self, guest_form):
-        # TODO: Add toasts to denote success
-        # TODO: Check if the user has already registered and update their details
         # save most of the guest form, minus the address and user
         guest = guest_form.save(commit=False)
+        # if the user has created a guest profile before, then block it
+        if Guest.objects.filter(user=self.request.user):
+            messages.add_message(
+                self.request,
+                messages.WARNING,
+                "You have already submitted an RSVP, please contact us"
+            )
+            # break the form_valid method and return invalid
+            return super().form_invalid(guest_form)
         guest.user = self.request.user  # add the user to the model-to-be-saved
         # populate an empty GuestForm with the posted data
         address_form = self.second_form_class(self.request.POST)
@@ -80,9 +96,8 @@ class AboutUsView(TemplateView):
     template_name = 'core/about_us.html'
 
 
-class WeddingPartyView(View):
-    # TODO: Add description of bridal party
-    pass
+class WeddingPartyView(TemplateView):
+    template_name = 'core/wedding_party.html'
 
 
 class HoneymoonPlansView(View):
@@ -117,8 +132,8 @@ class GuestSummaryView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
         guests_not_going = self.names_from_queryset(users.filter(guest__RSVP=2))
         # Get users with no guest profile attached
         guests_no_response = self.names_from_queryset(users.filter(guest=None))
-
-        # TODO: get dietary requirements. Filter those that say None or blank
+        # Dietary requirements as [{username, dietary}]
+        guests_dietary = self.get_dietary_requirements(users)
 
         # Return all four context lists
         context = {
@@ -126,6 +141,7 @@ class GuestSummaryView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
             'ceremony': guests_ceremony,
             'not_going': guests_not_going,
             'no_response': guests_no_response,
+            'dietary': guests_dietary
         }
         return context
 
@@ -133,8 +149,28 @@ class GuestSummaryView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
         """Get a list of names from a queryset of Users"""
         names = []
         for user in queryset:
-            if user.first_name is not '':
+            if user.first_name != '':
                 names.append(f"{user.first_name} {user.last_name}")
             else:
                 names.append(f"{user.username}")
         return names
+
+    def get_dietary_requirements(self, users):
+        """ Get a list of dicts with dietary requirements listed """
+        # get a list of all guests with something in the dietary column other than None or blank
+        guests = Guest.objects.exclude(dietary='').exclude(dietary='None').values('user_id', 'dietary')
+        # put all responses in a list of dicts with [{name, dietary}]
+        guests_dietary = []
+        for guest in guests:
+            # get the user object connected to the current guest
+            user = users.get(id=guest['user_id'])
+            # get the name of the user, or just get the username if its blank
+            if user.first_name is not '':
+                name = f'{user.first_name} {user.last_name}'
+            else:
+                name = user.username
+            guests_dietary.append({
+                'name': name,
+                'dietary': guest['dietary'],
+            })
+        return guests_dietary

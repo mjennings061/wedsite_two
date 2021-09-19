@@ -7,3 +7,8 @@ input[type="tel"],
 input[type="text"] {
   color: #FFF;
 }
+
+.card-img {
+  width: 100%;
+  height: auto;
+}

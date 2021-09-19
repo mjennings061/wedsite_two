@@ -11,9 +11,8 @@
                         {% if user.is_staff %}
                             <li><a href="{% url 'core:guest_summary' %}">Guest List</a></li>
                         {% endif %}
-                    {% else %}
-                        <li><a href="{% url 'core:rsvp_login' %}">RSVP</a></li>
                     {% endif %}
+                    <li><a href="{% url 'core:rsvp_login' %}">RSVP</a></li>
                     <li><a href="{% url 'core:on_the_day' %}">On The Day</a></li>
                     <li><a href="{% url 'core:about_us' %}">About Us</a></li>
                     <li><a href="{% url 'core:wedding_party' %}">Wedding Party</a></li>
@@ -32,9 +31,8 @@
             {% if user.is_staff %}
                 <li><a href="{% url 'core:guest_summary' %}">Guest List</a></li>
             {% endif %}
-        {% else %}
-            <li><a href="{% url 'core:rsvp_login' %}">RSVP</a></li>
         {% endif %}
+        <li><a href="{% url 'core:rsvp_login' %}">RSVP</a></li>
         <li><a href="{% url 'core:on_the_day' %}">On The Day</a></li>
         <li><a href="{% url 'core:about_us' %}">About Us</a></li>
         <li><a href="{% url 'core:wedding_party' %}">Wedding Party</a></li>
