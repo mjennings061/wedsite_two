@@ -7,7 +7,7 @@ from .models import Guest, Address
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.http.response import HttpResponseNotAllowed
+from django.contrib import messages
 
 
 class IndexView(TemplateView):
@@ -42,13 +42,14 @@ class RsvpView(LoginRequiredMixin, FormView):
         return context
 
     def form_valid(self, guest_form):
-        # TODO: check for a valid phone number before saving
+        # TODO: Add toasts to denote success
+        # TODO: Check if the user has already registered and update their details
         # save most of the guest form, minus the address and user
         guest = guest_form.save(commit=False)
         guest.user = self.request.user  # add the user to the model-to-be-saved
-        # TODO: move the address checking code to models.Address. Return only the model object
         # populate an empty GuestForm with the posted data
         address_form = self.second_form_class(self.request.POST)
+        # check the address is valid
         if address_form.is_valid():
             # check if something has been entered in the address before saving it
             if len(address_form.cleaned_data['first_line']) > 1:
@@ -96,10 +97,6 @@ class PhotosView(FormView):
     pass
 
 
-class ContactDetailsView(View):
-    pass
-
-
 class GuestSummaryView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
     template_name = 'core/guest_summary.html'
 
@@ -117,7 +114,6 @@ class GuestSummaryView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
         guests_no_response = self.names_from_queryset(users.filter(guest=None))
 
         # TODO: get dietary requirements. Filter those that say None or blank
-
 
         # Return all four context lists
         context = {

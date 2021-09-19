@@ -19,8 +19,6 @@ urlpatterns = [
     path('gifts/', GiftsInfoView.as_view(), name='gifts'),
     # photo gallery
     path('photos/', PhotosView.as_view(), name='photos'),
-    # contact details
-    path('contact_details/', ContactDetailsView.as_view(), name='contact_details'),
     # honeymoon plans
     path('honeymoon/', HoneymoonPlansView.as_view(), name='honeymoon'),
 ]

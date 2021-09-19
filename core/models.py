@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Guest(models.Model):
@@ -18,10 +19,9 @@ class Guest(models.Model):
         verbose_name="Dietary requirements",
         help_text="Please enter your dietary requirements or allergies. Enter 'None' if not",
     )
-    phone = models.CharField(
-        max_length=15,
+    phone = PhoneNumberField(
         verbose_name="Mobile phone number",
-        help_text="",
+        help_text="e.g.'+447889016685'",
     )
     email = models.EmailField(blank=True, verbose_name="Email address")
     address = models.ForeignKey(
@@ -56,7 +56,8 @@ class Address(models.Model):
     postcode = models.CharField(max_length=8, blank=True, verbose_name="Postcode", help_text="e.g. 'BT69 420'")
     country = models.CharField(max_length=100, blank=True, verbose_name="Country")
 
-    # TODO: write an address_valid() method to check if all fields of address are correct
+    def valid_address(self, address):
+        pass
 
     def __str__(self):
         return f'{self.first_line}, {self.postcode}'
