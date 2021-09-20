@@ -1,2 +1,2 @@
 release: python manage.py migrate
-web: gunicorn core.wsgi --log-file=-
+web: gunicorn wedsite_two.wsgi --log-file=-
