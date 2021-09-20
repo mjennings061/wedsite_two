@@ -11,8 +11,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+
+import django_heroku
 from django.urls.base import reverse_lazy
 import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,6 +34,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'mjennings061.pythonanywhere.com/',
+    'wedsite-mj.herokuapp.com'
 ]
 
 
@@ -84,11 +88,11 @@ WSGI_APPLICATION = 'wedsite_two.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'wedsite_db',
-        'USER': 'mj',
-        'PASSWORD': 'grobtutor',
-        'HOST': '127.0.0.1',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd3uhpd833gvcl3',
+        'USER': 'znwqpsyocoyhur',
+        'PASSWORD': '5acd52bcbf30f48373cee78e6a2d4891c35f64887937908edf993b9103f9bedb',
+        'HOST': 'ec2-54-73-152-36.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -132,6 +136,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+django_heroku.settings(locals())
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
