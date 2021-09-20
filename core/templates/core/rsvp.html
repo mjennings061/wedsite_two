@@ -2,8 +2,8 @@
 
 {% block content %}
     {% load static %}
-    {# TODO: Fix bug that prevents mobile users from selecting drop-down options  #}
     <script src="{% static 'core/base.js' %}"></script>
+    <script src="{% static 'core/select.js' %}"></script>
     <form method="post" class="white-text">{% csrf_token %}
         <div>Enter your contact details and availability</div>
         {{ form.as_p }}

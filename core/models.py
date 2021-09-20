@@ -21,7 +21,7 @@ class Guest(models.Model):
     )
     phone = PhoneNumberField(
         verbose_name="Mobile phone number",
-        help_text="e.g.'+447889016685'",
+        help_text="Phone number must be in international format e.g.'+447889016685'",
     )
     email = models.EmailField(blank=True, verbose_name="Email address")
     address = models.ForeignKey(
@@ -33,7 +33,7 @@ class Guest(models.Model):
     RSVP = models.IntegerField(
         choices=CHOICES,
         verbose_name="Attendance selection",
-        help_text="Please select your availability on the day of the wedding"
+        help_text="Please select your availability on the day of the wedding. Mobile users: long press your selection"
     )
     song = models.TextField(
         blank=True,
@@ -42,10 +42,10 @@ class Guest(models.Model):
     )
 
     def __str__(self):
-        if self.user.first_name is not '':
-            return f'{self.user.first_name} {self.user.last_name}'
-        else:
+        if self.user.first_name == '':
             return f'{self.user}'
+        else:
+            return f'{self.user.first_name} {self.user.last_name}'
 
 
 class Address(models.Model):
