@@ -81,4 +81,25 @@
             </table>
         </div>
     </div>
+    <div class="row">
+        <h3>Song Choices</h3>
+        <div class="col l6 s6">
+            <table>
+                <thead>
+                <tr>
+                    <th>Name ({{ songs | length }})</th>
+                    <th>Song</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for guest in songs %}
+                    <tr>
+                        <td>{{ guest.name }}</td>
+                        <td>{{ guest.song }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

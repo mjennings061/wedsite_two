@@ -135,7 +135,7 @@ class GuestSummaryView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
         # Dietary requirements as [{username, dietary}]
         guests_dietary = self.get_dietary_requirements(users)
         # TODO: Add song recommendations by user
-
+        guests_song = self.get_song_choices(users)
 
         # Return all four context lists
         context = {
@@ -143,7 +143,8 @@ class GuestSummaryView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
             'ceremony': guests_ceremony,
             'not_going': guests_not_going,
             'no_response': guests_no_response,
-            'dietary': guests_dietary
+            'dietary': guests_dietary,
+            'songs': guests_song
         }
         return context
 
@@ -176,3 +177,20 @@ class GuestSummaryView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
                 'dietary': guest['dietary'],
             })
         return guests_dietary
+
+    def get_song_choices(self, users):
+        guests = Guest.objects.exclude(song='').exclude(song='None').values('user_id', 'song')
+        guests_song = []
+        for guest in guests:
+            # get the user object connected to the current guest
+            user = users.get(id=guest['user_id'])
+            # get the name of the user, or just get the username if its blank
+            if user.first_name != '':
+                name = f'{user.first_name} {user.last_name}'
+            else:
+                name = user.username
+            guests_song.append({
+                'name': name,
+                'song': guest['song'],
+            })
+        return guests_song
