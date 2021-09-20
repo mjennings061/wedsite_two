@@ -134,6 +134,8 @@ class GuestSummaryView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
         guests_no_response = self.names_from_queryset(users.filter(guest=None))
         # Dietary requirements as [{username, dietary}]
         guests_dietary = self.get_dietary_requirements(users)
+        # TODO: Add song recommendations by user
+
 
         # Return all four context lists
         context = {
