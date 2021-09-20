@@ -85,11 +85,11 @@ class RsvpView(LoginRequiredMixin, SuccessMessageMixin, FormView):
         return super().form_valid(guest_form)
 
 
-class OnTheDayView(View):
+class OnTheDayView(TemplateView):
     # TODO: Add timeline
     # TODO: Add venue details
     # TODO: Add menu
-    pass
+    template_name = 'core/on_the_day.html'
 
 
 class AboutUsView(TemplateView):
@@ -100,21 +100,21 @@ class WeddingPartyView(TemplateView):
     template_name = 'core/wedding_party.html'
 
 
-class HoneymoonPlansView(View):
+class HoneymoonPlansView(TemplateView):
     # TODO: Add honeymoon plans with an image of where we are going
     # TODO: Add link to GiftsInfoView to donate
-    pass
+    template_name = 'core/honeymoon.html'
 
 
-class GiftsInfoView(View):
+class GiftsInfoView(TemplateView):
     # TODO: Add a link to PayPal
-    pass
+    template_name = 'core/gifts.html'
 
 
-class PhotosView(FormView):
+class PhotosView(TemplateView):
     # TODO: Add hashtag viewer for instagram and twitter:
     # https://developers.facebook.com/docs/instagram-api/guides/hashtag-search
-    pass
+    template_name = 'core/photos.html'
 
 
 class GuestSummaryView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
