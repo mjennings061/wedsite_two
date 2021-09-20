@@ -167,7 +167,7 @@ class GuestSummaryView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
             # get the user object connected to the current guest
             user = users.get(id=guest['user_id'])
             # get the name of the user, or just get the username if its blank
-            if user.first_name is not '':
+            if user.first_name != '':
                 name = f'{user.first_name} {user.last_name}'
             else:
                 name = user.username

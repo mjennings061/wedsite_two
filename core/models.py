@@ -20,7 +20,7 @@ class Guest(models.Model):
         help_text="Please enter your dietary requirements or allergies. Enter 'None' if not",
     )
     phone = PhoneNumberField(
-        verbose_name="Mobile phone number",
+        verbose_name="Mobile phone number (*)",
         help_text="Phone number must be in international format e.g.'+447889016685'",
     )
     email = models.EmailField(blank=True, verbose_name="Email address")
@@ -32,7 +32,7 @@ class Guest(models.Model):
         null=True)
     RSVP = models.IntegerField(
         choices=CHOICES,
-        verbose_name="Attendance selection",
+        verbose_name="Attendance selection (*)",
         help_text="Please select your availability on the day of the wedding. Mobile users: long press your selection"
     )
     song = models.TextField(

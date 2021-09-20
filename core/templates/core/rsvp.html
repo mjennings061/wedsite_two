@@ -3,7 +3,6 @@
 {% block content %}
     {% load static %}
     <script src="{% static 'core/base.js' %}"></script>
-    <script src="{% static 'core/select.js' %}"></script>
     <form method="post" class="white-text">{% csrf_token %}
         <div>Enter your contact details and availability</div>
         {{ form.as_p }}
