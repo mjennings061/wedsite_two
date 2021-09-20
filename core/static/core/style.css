@@ -12,3 +12,11 @@ input[type="text"] {
   width: 100%;
   height: auto;
 }
+
+.errorlist {
+  color: red !important;
+}
+
+.helptext {
+  color:darkgrey !important;
+}

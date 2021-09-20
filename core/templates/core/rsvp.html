@@ -3,11 +3,19 @@
 {% block content %}
     {% load static %}
     <script src="{% static 'core/base.js' %}"></script>
-    <form method="post" class="white-text">{% csrf_token %}
-        <div>Enter your contact details and availability</div>
-        {{ form.as_p }}
-        <div>Enter your address details:</div>
-        {{ form_address.as_p }}
-        <input type="submit" value="Submit RSVP">
-    </form>
+    <div class="col l12 s12">
+        {% if form.errors %}
+            <p class="red-text"><b>Error:</b></p>
+            {% for error in form.errors %}
+                <p class="red-text">Check the {{ error }} field</p>
+            {% endfor %}
+        {% endif %}
+        <form method="post" class="white-text">{% csrf_token %}
+            <div>Enter your contact details and availability</div>
+            {{ form.as_p }}
+            <div>Enter your address details:</div>
+            {{ form_address.as_p }}
+            <input type="submit" value="Submit RSVP">
+        </form>
+    </div>
 {% endblock %}
