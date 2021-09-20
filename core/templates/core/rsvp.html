@@ -9,6 +9,9 @@
             <p class="red-text"><b>Error:</b></p>
             {% for error in form.errors %}
                 <p class="red-text">Check the {{ error }} field</p>
+                <script>
+                    window.alert("Warning: check the {{ error }} field");
+                </script>
             {% endfor %}
         {% endif %}
         <form method="post" class="white-text">{% csrf_token %}
