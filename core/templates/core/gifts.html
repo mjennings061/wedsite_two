@@ -2,7 +2,19 @@
 
 {% block content %}
     {% load static %}
-    <div class="col l12 s12">
-        <p class="flow-text">Coming soon</p>
+    <div class="row center-align">
+        <div class="col l12 s12">
+            <h2>Help us with our honeymoon</h2>
+            <p class="flow-text">We would like to thank all of you for making our special day a reality. Please consider
+            helping us fund our honeymoon to Iceland. </p>
+            <img src="{% static 'core/images/paypal_qr.png' %}" style="border: 5px solid #FFF" class="center-img">
+            <p></p>
+            <form action="https://www.paypal.com/paypalme/mjennings061" method="get">
+                <button class="waves-effect waves-light btn-large indigo darken-4 ">
+                    <i class="material-icons left">attach_money</i>
+                    Donate
+                </button>
+            </form>
+        </div>
     </div>
 {% endblock %}

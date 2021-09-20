@@ -100,21 +100,13 @@ class WeddingPartyView(TemplateView):
     template_name = 'core/wedding_party.html'
 
 
-class HoneymoonPlansView(TemplateView):
-    # TODO: Add honeymoon plans with an image of where we are going
-    # TODO: Add link to GiftsInfoView to donate
-    template_name = 'core/honeymoon.html'
-
-
 class GiftsInfoView(TemplateView):
-    # TODO: Add a link to PayPal
+    # TODO: Add honeymoon plans with an image of where we are going
     template_name = 'core/gifts.html'
 
 
-class PhotosView(TemplateView):
-    # TODO: Add hashtag viewer for instagram and twitter:
-    # https://developers.facebook.com/docs/instagram-api/guides/hashtag-search
-    template_name = 'core/photos.html'
+class GalleryView(TemplateView):
+    template_name = 'core/gallery.html'
 
 
 class GuestSummaryView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
@@ -193,3 +185,5 @@ class GuestSummaryView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
                 'song': guest['song'],
             })
         return guests_song
+
+# TODO: Add privacy policy view

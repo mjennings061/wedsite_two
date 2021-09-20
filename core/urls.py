@@ -18,7 +18,5 @@ urlpatterns = [
     # gifts - paypal button - honeymoon plans
     path('gifts/', GiftsInfoView.as_view(), name='gifts'),
     # photo gallery
-    path('photos/', PhotosView.as_view(), name='photos'),
-    # honeymoon plans
-    path('honeymoon/', HoneymoonPlansView.as_view(), name='honeymoon'),
+    path('gallery/', GalleryView.as_view(), name='gallery'),
 ]
