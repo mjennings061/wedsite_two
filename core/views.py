@@ -186,4 +186,10 @@ class GuestSummaryView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
             })
         return guests_song
 
-# TODO: Add privacy policy view
+
+class PrivacyPolicyView(TemplateView):
+    template_name = 'core/privacy_policy.html'
+
+
+class CookiePolicyView(TemplateView):
+    template_name = 'core/cookie_policy.html'

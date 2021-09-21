@@ -19,4 +19,6 @@ urlpatterns = [
     path('gifts/', GiftsInfoView.as_view(), name='gifts'),
     # photo gallery
     path('gallery/', GalleryView.as_view(), name='gallery'),
+    path('privacy_policy/', PrivacyPolicyView.as_view(), name='privacy_policy'),
+    path('cookie_policy/', CookiePolicyView.as_view(), name='cookie_policy'),
 ]
