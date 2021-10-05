@@ -4,6 +4,8 @@
     {% load static %}
     <div class="row">
         <p></p>
+    </div>
+    <div class="row">
         <div class="col s12 center-align">
             <img class="responsive-img" src="{% static 'core/images/background.bmp' %}" alt="Background">
         </div>
@@ -31,4 +33,14 @@
             </a>
         </div>
     </div>
+    <hr>
+    {% include "core/on_the_day.html" %}
+    <hr>
+    {% include "core/about_us.html" %}
+    <hr>
+    {% include "core/wedding_party.html" %}
+    <hr>
+    {% include "core/gifts.html" %}
+    <hr>
+    {% include "core/gallery.html" %}
 {% endblock %}
