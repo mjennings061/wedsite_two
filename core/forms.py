@@ -5,7 +5,7 @@ from core.models import Guest, Address
 class GuestForm(ModelForm):
     class Meta:
         model = Guest
-        fields = ['email', 'phone', 'RSVP', 'dietary', 'song']
+        fields = ['RSVP', 'phone', 'email', 'dietary', 'song']
 
 
 class AddressForm(ModelForm):

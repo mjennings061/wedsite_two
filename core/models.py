@@ -17,7 +17,7 @@ class Guest(models.Model):
     dietary = models.TextField(
         blank=True,
         verbose_name="Dietary requirements",
-        help_text="Please enter your dietary requirements or allergies. Enter 'None' if not",
+        help_text="Please enter your dietary requirements or allergies",
     )
     phone = PhoneNumberField(
         verbose_name="Mobile phone number (*)",

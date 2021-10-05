@@ -14,7 +14,7 @@
                 </script>
             {% endfor %}
         {% endif %}
-        <form method="post" class="white-text">{% csrf_token %}
+        <form method="post">{% csrf_token %}
             <div>Enter your contact details and availability</div>
             {{ form.as_p }}
             <div>Enter your address details:</div>

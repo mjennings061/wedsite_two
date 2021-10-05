@@ -4,8 +4,8 @@ from core.views import *
 app_name = 'core'
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
-    path('rsvp/', RsvpView.as_view(), name='rsvp'),
-    path('rsvp_login/', RsvpLoginView.as_view(), name='rsvp_login'),
+    path('rsvp_form/', RsvpView.as_view(), name='rsvp'),
+    path('rsvp/', RsvpLoginView.as_view(), name='rsvp_login'),
     path('rsvp_logout/', RsvpLogoutView.as_view(), name='rsvp_logout'),
     # summary of guests (admin view only)
     path('guest_summary/', GuestSummaryView.as_view(), name='guest_summary'),

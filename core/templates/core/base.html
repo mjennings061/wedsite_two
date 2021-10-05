@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
     <head>
         <meta charset="UTF-8">
         <title>Katie &amp; MJ</title>
@@ -13,11 +13,11 @@
         <script src="{% static 'core/select.js' %}"></script>
     </head>
 
-    <body class="grey darken-4">
+    <body class="white">
         {% include "core/navbar.html" %}
         {% include "core/messages.html" %}
         <main class="container">
-            <div class="row white-text">
+            <div class="row">
                 {% block content %}
                 {% endblock %}
             </div>
