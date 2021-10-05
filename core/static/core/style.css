@@ -52,3 +52,7 @@ input[type="label"] {
   display: flex;
   flex-wrap: wrap;
 }
+
+.responsive-header {
+  width: 100%;
+}

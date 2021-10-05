@@ -1,107 +1,109 @@
 {% extends "core/base.html" %}
 
 {% block content %}
-    <div class="row">
-        <h2>Attendance Summary</h2>
-        <div class="col l3 s6">
-            <table class="striped">
-                <thead>
-                <tr>
-                    <th>Going ({{ going | length }})</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for user in going %}
-                    <tr><td>{{ user }}</td></tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <div class="col l3 s6">
-            <table class="striped">
-                <thead>
-                <tr>
-                    <th>Ceremony Only ({{ ceremony | length}})</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for user in ceremony %}
-                    <tr><td>{{ user }}</td></tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <div class="col l3 s6">
-            <table class="striped">
-                <thead>
-                <tr>
-                    <th>Not Going ({{ not_going | length }})</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for user in not_going %}
-                    <tr><td>{{ user }}</td></tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <div class="col l3 s6">
-            <table class="striped">
-                <thead>
-                <tr>
-                    <th>No Response ({{ no_response | length }})</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for user in no_response %}
-                    <tr><td>{{ user }}</td></tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <hr>
-    <div class="row">
-        <h3>Dietary Requirements</h3>
-        <div class="col l6 s6">
-            <table>
-                <thead>
-                <tr>
-                    <th>Name ({{ dietary | length }})</th>
-                    <th>Dietary Requirements</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for guest in dietary %}
+    <div class="container">
+        <div class="row">
+            <h2>Attendance Summary</h2>
+            <div class="col l3 s6">
+                <table class="striped">
+                    <thead>
                     <tr>
-                        <td>{{ guest.name }}</td>
-                        <td>{{ guest.dietary }}</td>
+                        <th>Going ({{ going | length }})</th>
                     </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <hr>
-    <div class="row">
-        <h3>Song Choices</h3>
-        <div class="col l6 s6">
-            <table>
-                <thead>
-                <tr>
-                    <th>Name ({{ songs | length }})</th>
-                    <th>Song</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for guest in songs %}
+                    </thead>
+                    <tbody>
+                    {% for user in going %}
+                        <tr><td>{{ user }}</td></tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col l3 s6">
+                <table class="striped">
+                    <thead>
                     <tr>
-                        <td>{{ guest.name }}</td>
-                        <td>{{ guest.song }}</td>
+                        <th>Ceremony Only ({{ ceremony | length}})</th>
                     </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    {% for user in ceremony %}
+                        <tr><td>{{ user }}</td></tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col l3 s6">
+                <table class="striped">
+                    <thead>
+                    <tr>
+                        <th>Not Going ({{ not_going | length }})</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in not_going %}
+                        <tr><td>{{ user }}</td></tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col l3 s6">
+                <table class="striped">
+                    <thead>
+                    <tr>
+                        <th>No Response ({{ no_response | length }})</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in no_response %}
+                        <tr><td>{{ user }}</td></tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <h3>Dietary Requirements</h3>
+            <div class="col l6 s6">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name ({{ dietary | length }})</th>
+                        <th>Dietary Requirements</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for guest in dietary %}
+                        <tr>
+                            <td>{{ guest.name }}</td>
+                            <td>{{ guest.dietary }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <h3>Song Choices</h3>
+            <div class="col l6 s6">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name ({{ songs | length }})</th>
+                        <th>Song</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for guest in songs %}
+                        <tr>
+                            <td>{{ guest.name }}</td>
+                            <td>{{ guest.song }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 {% endblock %}

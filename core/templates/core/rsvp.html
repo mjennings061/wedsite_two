@@ -3,36 +3,38 @@
 {% block content %}
     {% load static %}
     <script src="{% static 'core/base.js' %}"></script>
-    <div class="col l12 s12">
-        <p class="flow-text">Please let us know if you can make it</p>
-        {% if form.errors %}
-            <p class="red-text"><b>Error:</b></p>
-            {% for error in form.errors %}
-                <p class="red-text">Check the {{ error }} field</p>
-                <script>
-                    window.alert("Warning: check the {{ error }} field");
-                </script>
-            {% endfor %}
-        {% endif %}
-        <form method="post">{% csrf_token %}
-            <div>Enter your contact details and availability</div>
-            {{ form.as_p }}
-            <div>Enter your address details:</div>
-            {{ form_address.as_p }}
-            <p>
-                <label>
-                    <input type="checkbox" id="consent"/>
-                    <span>
-                        (*) I consent to my data being stored.
-                        <a href="{% url 'core:privacy_policy' %}">Privacy Policy</a>
-                    </span>
+    <div class="container">
+        <div class="col l12 s12">
+            <p class="flow-text">Please let us know if you can make it</p>
+            {% if form.errors %}
+                <p class="red-text"><b>Error:</b></p>
+                {% for error in form.errors %}
+                    <p class="red-text">Check the {{ error }} field</p>
                     <script>
-                        document.getElementById("consent").required = true;
+                        window.alert("Warning: check the {{ error }} field");
                     </script>
-                </label>
-            </p>
-            <input type="submit" value="Submit RSVP">
-        </form>
-        {# TODO: Add a link to the privacy policy #}
+                {% endfor %}
+            {% endif %}
+            <form method="post">{% csrf_token %}
+                <div>Enter your contact details and availability</div>
+                {{ form.as_p }}
+                <div>Enter your address details:</div>
+                {{ form_address.as_p }}
+                <p>
+                    <label>
+                        <input type="checkbox" id="consent"/>
+                        <span>
+                            (*) I consent to my data being stored.
+                            <a href="{% url 'core:privacy_policy' %}">Privacy Policy</a>
+                        </span>
+                        <script>
+                            document.getElementById("consent").required = true;
+                        </script>
+                    </label>
+                </p>
+                <input type="submit" value="Submit RSVP">
+            </form>
+            {# TODO: Add a link to the privacy policy #}
+        </div>
     </div>
 {% endblock %}
