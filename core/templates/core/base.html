@@ -15,10 +15,12 @@
     <body class="white">
         {% include "core/navbar.html" %}
         {% include "core/messages.html" %}
-        <main class="container">
-            <div class="row">
-                {% block content %}
-                {% endblock %}
+        <main>
+            <div class="container">
+                <div class="row">
+                    {% block content %}
+                    {% endblock %}
+                </div>
             </div>
         </main>
         {% include "core/footer.html" %}
