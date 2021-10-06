@@ -53,3 +53,9 @@ input[type="label"] {
   font-size: 50px !important;
   width: auto;
 }
+
+.td-left {
+  text-align: left !important;
+  width: 1%;
+  white-space: nowrap;
+}

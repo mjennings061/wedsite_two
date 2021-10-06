@@ -85,30 +85,6 @@ class RsvpView(LoginRequiredMixin, SuccessMessageMixin, FormView):
         return super().form_valid(guest_form)
 
 
-class OnTheDayView(TemplateView):
-    # TODO: Add timeline
-    # TODO: Add venue details
-    # TODO: Add menu
-    template_name = 'core/on_the_day.html'
-
-
-class AboutUsView(TemplateView):
-    template_name = 'core/about_us.html'
-
-
-class WeddingPartyView(TemplateView):
-    template_name = 'core/wedding_party.html'
-
-
-class GiftsInfoView(TemplateView):
-    # TODO: Add honeymoon plans with an image of where we are going
-    template_name = 'core/gifts.html'
-
-
-class GalleryView(TemplateView):
-    template_name = 'core/gallery.html'
-
-
 class GuestSummaryView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
     template_name = 'core/guest_summary.html'
 
@@ -193,3 +169,7 @@ class PrivacyPolicyView(TemplateView):
 
 class CookiePolicyView(TemplateView):
     template_name = 'core/cookie_policy.html'
+
+
+class GettingThereView(TemplateView):
+    template_name = 'core/getting_there.html'
