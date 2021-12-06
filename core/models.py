@@ -27,7 +27,7 @@ class Guest(models.Model):
     address = models.ForeignKey(
         'Address',
         verbose_name="Postal address",
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         blank=True,
         null=True)
     RSVP = models.IntegerField(
