@@ -21,7 +21,7 @@ class Guest(models.Model):
     )
     phone = PhoneNumberField(
         verbose_name="Mobile phone number (*)",
-        help_text="Phone number must be in international format e.g.'+447889016685'",
+        help_text="Phone number must be in international format e.g. +447889016685 if your number is 07889016685",
     )
     email = models.EmailField(blank=True, verbose_name="Email address")
     address = models.ForeignKey(

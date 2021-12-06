@@ -5,20 +5,27 @@
     <script src="{% static 'core/base.js' %}"></script>
     <div class="container">
         <div class="col l12 s12">
-            <p class="flow-text">Please let us know if you can make it</p>
+            <h3>
+                Please let us know if you can make it by providing your RSVP and mobile number.
+            </h3>
             {% if form.errors %}
                 <p class="red-text"><b>Error:</b></p>
                 {% for error in form.errors %}
                     <p class="red-text">Check the {{ error }} field</p>
-                    <script>
-                        window.alert("Warning: check the {{ error }} field");
-                    </script>
+                    {% if error == 'phone' %}
+                        <script>
+                            window.alert("Warning: check the {{ error }} field. Number should be in +44XXXXXXXXXX format");
+                        </script>
+                    {% else  %}
+                        <script>
+                            window.alert("Warning: check the {{ error }} field");
+                        </script>
+                    {% endif %}
                 {% endfor %}
             {% endif %}
             <form method="post">{% csrf_token %}
-                <div>Enter your contact details and availability</div>
                 {{ form.as_p }}
-                <div>Enter your address details:</div>
+                <h3>Enter your address details to help us send thank you cards:</h3>
                 {{ form_address.as_p }}
                 <p>
                     <label>
@@ -34,7 +41,6 @@
                 </p>
                 <input type="submit" value="Submit RSVP">
             </form>
-            {# TODO: Add a link to the privacy policy #}
         </div>
     </div>
 {% endblock %}
