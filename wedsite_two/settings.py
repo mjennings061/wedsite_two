@@ -89,10 +89,10 @@ WSGI_APPLICATION = 'wedsite_two.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd3uhpd833gvcl3',
-        'USER': 'znwqpsyocoyhur',
-        'PASSWORD': '5acd52bcbf30f48373cee78e6a2d4891c35f64887937908edf993b9103f9bedb',
-        'HOST': 'ec2-54-73-152-36.eu-west-1.compute.amazonaws.com',
+        'NAME': 'd2kvtus10im7ss',
+        'USER': 'lmklkmeezwrcff',
+        'PASSWORD': 'b45633f5a68884a0cf28fde9c7ab067204e30b710664643d685f508b3872e0b1',
+        'HOST': 'ec2-63-34-223-144.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
     }
 }
