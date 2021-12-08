@@ -119,10 +119,13 @@ class GuestSummaryView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
         """Get a list of names from a queryset of Users"""
         names = []
         for user in queryset:
-            if user.first_name != '':
+            if user.first_name != '' and user.last_name != '':
                 names.append(f"{user.first_name} {user.last_name}")
             else:
-                names.append(f"{user.username}")
+                # Split the username and capitalise to get the name.
+                names_split = user.username.split(".")
+                names_split = [name.capitalize() for name in names_split]
+                names.append(f"{names_split[0]} {names_split[1]}")
         return names
 
     def get_dietary_requirements(self, users):
